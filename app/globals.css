@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fcfcfd;
+  --foreground: #07080b;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-2: rgba(255, 255, 255, 0.55);
+  --border: rgba(10, 10, 15, 0.08);
+  --muted: rgba(10, 10, 15, 0.62);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+/* Faster rendering */
+* {
+  will-change: auto;
+}
+
+::selection {
+  background: rgba(126, 87, 255, 0.18);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(#000, #000, transparent);
+    mask-image: linear-gradient(#000, #000, transparent);
+  }
+
+  /* LIGHTWEIGHT PREMIUM SHADOW */
+  .shadow-premium {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .ring-soft {
+    box-shadow: 0 0 0 1px var(--border);
+  }
+
+  /* OPTIMIZED GLASS */
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(255, 255, 255, 0.68)
+    );
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .chrome-border {
+    position: relative;
+  }
+
+  .chrome-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.6)
+    );
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+@keyframes luxScan {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 0% 220px;
+  }
+}
+
+/* REMOVE NEXT DEV ICON */
+nextjs-portal {
+  display: none !important;
+}
+
+/* SMOOTH LIGHTWEIGHT TRANSITIONS */
+a,
+button {
+  transition:
+    all 0.25s ease;
+}
+
+/* PREMIUM BUTTON HOVER */
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* NAVBAR UNDERLINE ANIMATION */
+nav a {
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 0%;
+  height: 2px;
+
+  background: #111;
+
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
